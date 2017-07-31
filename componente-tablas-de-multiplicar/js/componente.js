@@ -6,7 +6,7 @@ Vue.component('componente-tablas', {
 					<h3 class="panel-title">Tablas de multiplicar</h3>
 				</div>
 				<div class="panel-body">
-					<form @submit.prevent="calcularTabla">
+					<form>
 						<div class="form-group">
 							<label for="num" class="control-label">Introduzca un n&uacute;mero:</label>
 							<input type="number" id="num" class="form-control" v-model="numero" autofocus>
