@@ -1,4 +1,5 @@
-# Ejemplo de formulario de facturación con login
+# Vue.js 2
+## Ejemplo de formulario de facturación con login
 
 Este es un ejemplo básico en el que se muestra cómo utilizar algunas de
 las directivas de Vue.js.
@@ -12,7 +13,7 @@ Se incluyen
 - Búsqueda de elementos duplicados
 - Computed properties
 
-# Login
+## Login
 Los usuarios para realizar el login se encuentran en el código JavaScript, de
 igual forma que la lista de productos. Para desbloquear el "sitema" utilice:
 
