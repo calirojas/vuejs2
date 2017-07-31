@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	 <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+	<div class="container" id="app">
+		<div class="c-login" v-show="!login.validado">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+						<h2 class="text-center">Bienvenido</h2>
+						<div class="alert" :class="'alert-' + login.mensaje.clase">
+							<p>{{ login.mensaje.texto }}</p>
+						</div>
+						<form action="" @submit.prevent="validarUsuario">
+							<div class="form-group">
+								<label for="" class="control-label">Usuario:</label>
+								<div class="controls">
+									<input type="text" class="form-control"
+									required v-model="login.usuario" autofocus>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="" class="control-label">Contraseña:</label>
+								<div class="controls">
+									<input type="password" class="form-control" required
+									v-model="login.contrasena">
+								</div>
+							</div>
+							<div class="text-right form-group">
+								<button type="submit" class="btn btn-primary">Ingresar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+				<h1 class="text-left">
+					Facturación <small>({{ login.usuario }})</small>
+					<span class="pull-right">
+						<button class="btn btn-danger btn-xs" @click="login.validado = false">Terminar la sesión</button>
+					</span>
+				</h1>
+				<div class="form-group">
+					<label for="" class="control-label">Producto:</label>
+					<select class="form-control" v-model="facturacion.productoSeleccionado.producto"
+					@change="infoProductoSeleccionado">
+						<option value="">-- Seleccionar --</option>
+						<option v-for="producto in productos" :value="producto.producto">
+							{{ producto.descripcion }}
+						</option>
+					</select>
+				</div>
+				<div class="panel panel-default" v-show="facturacion.productoSeleccionado.producto != ''">
+					<div class="panel-heading">
+						<h3 class="panel-title">Información del producto seleccionado</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-sm-2">
+								<img :src="'http://lorempixel.com/90/90/abstract/' + facturacion.productoSeleccionado.producto" class="img-responsive img-rounded" align="left">
+							</div>
+							<div class="col-sm-10">
+								<p>
+									<strong>Código: </strong> {{ facturacion.productoSeleccionado.producto || '' }}
+								</p>
+								<p>
+									<strong>Descripción: </strong> {{ facturacion.productoSeleccionado.descripcion || '' }}
+								</p>
+								<p>
+									<strong>Precio: </strong> {{ facturacion.productoSeleccionado.precio || '' }}
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="panel-footer">
+						<div class="row">
+							<div class="col-sm-3">
+								<label for="" class="control-label">Cantidad:</label>
+							</div>
+							<div class="col-sm-6">
+								<input type="number" min="1" v-model="facturacion.productoSeleccionado.cantidad" class="form-control col-sm-6 input-sm" required>
+							</div>
+							<div class="col-sm-3 text-right">
+								<button class="btn btn-primary" @click="agregarLinea">Agregar</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<hr>
+				<div class="table-responsive">
+					<table class="table table-hover table-striped">
+						<thead>
+							<tr>
+								<th>Código</th>
+								<th>Descripción</th>
+								<th>Precio</th>
+								<th>Cantidad</th>
+								<th>Total línea</th>
+								<th>&nbsp;</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-show="!facturacion.productosAgregados.length">
+								<td colspan="6">
+									<p class="text-center">
+										<em>
+											No se han agregado productos a la factura actual
+										</em>
+									</p>
+								</td>
+							</tr>
+							<tr v-for="(linea, indice) in facturacion.productosAgregados">
+								<td>{{ linea.producto }}</td>
+								<td>{{ linea.descripcion }}</td>
+								<td>{{ linea.precio }}</td>
+								<td width="100">
+									<input type="number" min="1" class="form-control input-sm" v-model="linea.cantidad">
+								</td>
+								<td>{{linea.cantidad * linea.precio }}</td>
+								<td class="text-right">
+									<button class="btn btn-xs btn-danger" title="Eliminar línea" @click="eliminarLinea(indice)">&times;</button>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="5" class="text-left">
+									<strong>Total de la compra:</strong>
+								</td>
+								<td>
+									<strong>{{ totalLineas }}</strong>
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://unpkg.com/vue@2.4.2"></script>
+	<script src="js/scripts.js"></script>
+</body>
+</html>
