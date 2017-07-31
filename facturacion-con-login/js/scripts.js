@@ -65,8 +65,6 @@ new Vue({
 			}
 		],
 		usuarios: [
-			{usuario: 'test', contrasena: 'test'},
-			{usuario: 'test2', contrasena: 'test2'},
 			{usuario: 'calirojas', contrasena: 'cali'}
 		],
 		facturacion: {
