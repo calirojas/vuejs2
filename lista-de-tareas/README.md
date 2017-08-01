@@ -9,7 +9,7 @@ Múltiples mensajes son mostrados en la vista, cuando una u otra condición se c
 Binding múltiple de clases y atributos.
 
 La vista de este ejemplo no es la más bonita de todas, claramente se puede mejorar y optimizar
-manejando otros métodos y propiedades en la instancia de Vue.js, pero ha desarrollado
+manejando otros métodos y propiedades en la instancia de Vue.js, pero lo he desarrollado
 de esta forma para demostrar las capacidades de la distintas directivas.
 
 Se usa:
