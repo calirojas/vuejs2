@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Cali Rojas / Simulaci&oacute;n de chat con Vue.js</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+	<div class="container" id="app">
+		<div class="row">
+			<div class="col-sm-3">
+				<img src="img/vue.png" class="img-responsive center-block" alt="Vue.js">
+			</div>
+			<div class="col-sm-9">
+				<h3>Simulaci&oacute;n de chat con Vue.js</h2>
+				<p>
+					Ejemplo desarrollado por
+					<a href="http://calirojas.com/">Cali Rojas</a>
+				</p>
+				<hr>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<form @submit.prevent="publicarMensaje('izquierda')">
+					<div class="form-group">
+						<button type="submit" class="btn btn-xs btn-primary pull-right"
+						:disabled="usuarios.izquierda.mensajesVacios >= limiteMensajesVacios">Enviar</button>
+						<label for="" class="control-label">
+							<span class="badge" title="Mensajes enviados">
+								{{  usuarios.izquierda.mensajesEnviados }}
+							</span>
+							{{ usuarios.izquierda.nombre }}
+						</label>
+						<div class="input-group">
+							<span class="input-group-addon">
+								<img :src="usuarios.izquierda.avatar"
+								alt="Avatar" height="60">
+							</span>
+							<textarea rows="3" class="form-control" v-model="nuevoMensaje.izquierda"
+							@keyup.enter="publicarMensaje('izquierda')"></textarea>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="col-sm-12">
+				<ul class="list-unstyled conversacion" id="conversacion">
+					<li class="text-center">
+						<div class="label label-warning">
+							Oops..! Esta conversaci&oacute;n ficticia no est&aacute; cifrada ;-)
+						</div>
+					</li>
+					<li v-for="mensaje in mensajes"
+					:class="{'text-right': mensaje.posicion == 'derecha'}">
+						<span class="mensaje"
+						:class="'mensaje-' + mensaje.posicion"
+						:title="mensaje.fecha">
+							{{ mensaje.contenido }}
+						</span>
+					</li>
+				</ul>
+			</div>
+			<div class="col-sm-12">
+				<form @submit.prevent="publicarMensaje('derecha')">
+					<div class="form-group">
+						<label for="" class="control-label">
+							<span class="badge" title="Mensajes enviados">
+								{{  usuarios.derecha.mensajesEnviados }}
+							</span>
+							{{ usuarios.derecha.nombre }}
+						</label>
+						<div class="input-group">
+							<textarea rows="3" class="form-control"
+							v-model="nuevoMensaje.derecha"
+							@keyup.enter="publicarMensaje('derecha')"></textarea>
+							<span class="input-group-addon">
+								<img :src="usuarios.derecha.avatar"
+								alt="Avatar" height="60">
+							</span>
+						</div>
+					</div>
+					<div class="text-right">
+						<button type="submit" class="btn btn-xs btn-primary"
+						:disabled="usuarios.derecha.mensajesVacios >= limiteMensajesVacios">Enviar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<h3>Data
+					<span class="pull-right">
+						<button class="btn btn-xs btn-danger"
+						@click="borrar">Borrar mensajes y contadores</button>
+					</span>
+				</h3>
+				<code>
+					{{ $data || json }}
+				</code>
+			</div>
+		</div>
+	</div>
+	<script src="https://unpkg.com/vue@2.4.2"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>
