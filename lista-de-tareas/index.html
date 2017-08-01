@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Cali Rojas / Lista de tareas con Vue.js</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+	<div class="container" id="app">
+		<div class="row">
+			<div class="col-sm-12 text-center">
+				<h3>Uso de m&uacute;ltiples directivas</h3>
+				<h2>Lista de tareas con Vue.js</h2>
+				<p>Desarrollado por <a href="http://calirojas.com">Cali Rojas</a></p>
+				<hr>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<form @submit.prevent="agregarTarea">
+					<div class="form-group">
+						<label for="nombre_tarea" class="control-label">Nombre de la tarea:</label>
+						<div class="input-group">
+							<input type="text" class="form-control" id="nombre_tarea"
+							placeholder="Digite el nombre de la tarea que desea agregar"
+							v-model="nuevaTarea" autofocus autocomplete="off" maxlength="50">
+							<span class="input-group-btn">
+								<button class="btn btn-default"
+								:disabled="!nuevaTarea.trim()">Agregar</button>
+							</span>
+						</div>
+					</div>
+				</form>
+				<div class="alert "
+					:class="{'alert-info' : !nuevaTarea.trim(), 'alert-warning' : nuevaTarea.trim()}">
+					<p v-if="!nuevaTarea.trim()">
+						Por favor, introduzca el nombre de la nueva tarea.
+						<span class="label label-danger">El nombre no puede estar vac&iacute;o.</span>
+					</p>
+					<p v-else>
+						Usted esta digitando una tarea.
+						<span class="label label-default">
+							Longitud: {{ nuevaTarea.trim().length }}
+						</span>
+					</p>
+				</div>
+				<div class="alert alert-success" v-show="mensajeTareaAgregada">
+					<a href="#" class="close"
+					@click.prevent="mensajeTareaAgregada = !mensajeTareaAgregada">&times;</a>
+					<p>La nueva tarea se agreg&oacute; correctamente.</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<p class="text-center" v-show="!tareas.length">
+					<em>Su lista de tareas est&aacute; vac&iacute;a.</em>
+				</p>
+				<ul class="list-group" v-show="tareas.length">
+					<li v-for="tarea in tareas" class="list-group-item"
+					:title="'Fecha de la tarea: ' + tarea.fecha">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" v-model="tarea.finalizada">
+								<span :style="[tarea.finalizada ? {textDecoration: 'line-through'} : '']"
+								:class="{'text-muted': tarea.finalizada}">
+									{{ tarea.nombre }}
+								</span>
+							</label>
+							<button class="btn btn-danger btn-xs pull-right"
+							@click="eliminarTarea(tarea)">&times;</button>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script src="https://unpkg.com/vue@2.4.2"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>
