@@ -15,3 +15,5 @@ pero si combina muchas de las funcionalidades de Vue.js. Entre ellas:
 - Eventos
 
 Es posible agregar nuevos artistas dinámicamente.
+
+DEMO: http://calirojas.com/demos/svuetify/
