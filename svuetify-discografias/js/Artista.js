@@ -1,0 +1,84 @@
+/*
+	Svuetify
+	Autor: Cali Rojas
+	Blog: http://calirojas.com
+	GitHub: https://github.com/calirojas/vuejs2
+*/
+
+const Artista = {
+	template: `
+		<div class="c-artistas" v-if="datos">
+			<h1 class="text-right">{{ datos.nombre }}</h1>
+			<div class="thumbnail">
+				<img :src="datos.imagen" class="img-responsive foto-artista">
+				<div class="caption" v-if="datos.descripcion">
+					<p>{{ datos.descripcion }}</p>
+				</div>
+			</div>
+
+			<h3>Discograf&iacute;a <small>{{ datos.discos.length }}</small></h3>
+			<div v-if="!datos.discos.length">
+				<span class="label label-danger">Ooops!</span>
+				Los discos de este artista no han sido registrados en el archivo de datos.
+			</div>
+			<ul v-else class="list-unstyled">
+				<li v-for="disco in datos.discos">
+					<div class="row">
+						<div class="col-sm-12">
+							<h3>{{ disco.nombre }} <small>{{ disco.lanzamiento }}</small></h3>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4">
+							<img :src="disco.portada" :alt="disco.nombre"
+							class="img-responsive portada-disco">
+						</div>
+						<div class="col-sm-8">
+							<ol v-if="disco.canciones.length">
+								<li v-for="cancion in disco.canciones"
+								:class="{'text-muted' : !cancion.nombre}">
+									{{ cancion.nombre || 'Nombre desconocido' }}
+									<span class="label label-default pull-right">
+										{{ cancion.duracion || '00:00' }}
+									</span>
+								</li>
+							</ol>
+							<div v-else>
+								<span class="label label-danger">Ooops!</span>
+								Las canciones de este disco no han sido agregadas al archivo de datos.
+							</div>
+						</div>
+					</div>
+					<hr>
+				</li>
+			</ul>
+		</div>
+	`,
+	data(){
+		return{
+			datos : {}
+		}
+	},
+	methods: {
+		obtenerInfo: function(){
+			var paramArtista = this.$route.params.artista,
+			consulta = json.artistas.find(function(el){
+				return el.id == paramArtista;
+			});
+
+			if(!consulta){
+				this.$router.push('/');
+			}
+
+			this.datos = consulta;
+		}
+	},
+	created: function(){
+		this.obtenerInfo();
+	},
+	watch: {
+		'$route': function(newRoute, currentRoute){
+			this.obtenerInfo();
+		}
+	}
+};
