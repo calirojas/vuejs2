@@ -2,7 +2,7 @@ var json = {
 	artistas: [
 		{
 			id: 1,
-			imagen: 'https://consequenceofsound.files.wordpress.com/2015/06/screen-shot-2015-06-21-at-7-55-56-pm.png',
+			imagen: 'img/artistas/tool.png',
 			nombre: 'Tool',
 			descripcion: `
 					Tool es una banda estadounidense de rock surgida en 1990 en Los Ángeles,
@@ -19,7 +19,7 @@ var json = {
 					disco: 1,
 					nombre: 'Undertow',
 					lanzamiento: 1993,
-					portada: 'https://upload.wikimedia.org/wikipedia/en/8/82/Tool-Undertow.jpg',
+					portada: 'img/discos/tool/undertow.jpg',
 					canciones: [
 						{
 							id: 1,
@@ -77,14 +77,14 @@ var json = {
 					id: 2,
 					nombre: 'Ænima',
 					lanzamiento: 1996,
-					portada: 'https://upload.wikimedia.org/wikipedia/en/2/2f/Aenima.jpg',
+					portada: 'img/discos/tool/aenima.jpg',
 					canciones: []
 				},
 				{
 					id: 3,
 					nombre: 'Lateralus',
 					lanzamiento: 2001,
-					portada: 'https://upload.wikimedia.org/wikipedia/en/6/63/Tool_-_Lateralus.jpg',
+					portada: 'img/discos/tool/lateralus.jpg',
 					canciones: [
 						{
 							id: 1,
@@ -145,7 +145,7 @@ var json = {
 					id: 4,
 					nombre: '10.000 Days',
 					lanzamiento: 2006,
-					portada: 'https://s-media-cache-ak0.pinimg.com/originals/47/81/1c/47811c28477e138f72f93a51bbd5d8c7.jpg',
+					portada: 'img/discos/tool/10kdays.jpg',
 					canciones: [
 						{id: 1},
 						{id: 2, nombre: 'Jambi'},
@@ -164,7 +164,7 @@ var json = {
 		},
 		{
 			id: 2,
-			imagen: 'https://cdn.crhoy.net/imagenes/2017/07/Marilyn-Manson-4.jpg',
+			imagen: 'img/artistas/mm.jpg',
 			nombre: 'Marilyn Manson',
 			descripcion: `
 				Marilyn Manson es una banda estadounidense de metal industrial/alternativo formada en el año
@@ -180,7 +180,7 @@ var json = {
 					id: 1,
 					nombre: 'Portrait of an American Family',
 					lanzamiento: 1994,
-					portada: 'https://upload.wikimedia.org/wikipedia/en/e/e5/Marilyn_Manson_-_Portrait_of_an_American_Family_cover.jpg',
+					portada: 'img/discos/mm/portrait-of-an-american-family.jpg',
 					canciones: [
 						{
 							id: 1,
@@ -263,7 +263,7 @@ var json = {
 					id: 2,
 					nombre: 'Antichrist Superstar',
 					lanzamiento: 1996,
-					portada: 'https://upload.wikimedia.org/wikipedia/en/d/d5/Marilyn_Manson_-_Antichrist_Superstar.png',
+					portada: 'img/discos/mm/antichrist-superstar.png',
 					canciones: [
 
 					]
@@ -272,14 +272,14 @@ var json = {
 		},
 		{
 			id: 3,
-			imagen: 'http://www.sunsofthetundra.co.uk/img/band_wall1.JPG',
+			imagen: 'img/artistas/peach-gb.jpg',
 			nombre: 'Peach',
 			descripcion: '',
 			discos: []
 		},
 		{
 			id: 4,
-			imagen: 'http://thcofficial.com/wp-content/uploads/2014/07/THC1.jpg',
+			imagen: 'img/artistas/thc.jpg',
 			nombre: 'Texas Hippie Coalition',
 			descripcion: `
 				Texas Hippie Coalition (también conocido como THC) es una banda de
