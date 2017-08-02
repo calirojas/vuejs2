@@ -105,9 +105,8 @@ new Vue({
 					}
 				});
 
-				console.log(lineaFactura)
-
-				lineaFactura.cantidad += productoSeleccionado.cantidad;
+				lineaFactura.cantidad = parseInt(lineaFactura.cantidad) +
+					parseInt(productoSeleccionado.cantidad);
 			}
 		},
 		infoProductoSeleccionado: function(){
