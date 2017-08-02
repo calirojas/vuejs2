@@ -1,7 +1,4 @@
 var json = {
-	generos: [
-
-	],
 	artistas: [
 		{
 			id: 1,
@@ -17,7 +14,6 @@ var json = {
 					Adam Jones, el vocalista Maynard James Keenan y el bajista Justin
 					Chancellor, que sustituyó a Paul D'Amour en 1995.
 			`,
-			genero: 1,
 			discos: [
 				{
 					disco: 1,
@@ -179,7 +175,6 @@ var json = {
 				y las drogas, así como también por sus frecuentes transformaciones estéticas y elaboradas
 				puestas escénicas.
 			`,
-			genero: 2,
 			discos: [
 				{
 					id: 1,
@@ -280,7 +275,6 @@ var json = {
 			imagen: 'http://www.sunsofthetundra.co.uk/img/band_wall1.JPG',
 			nombre: 'Peach',
 			descripcion: '',
-			genero: 1,
 			discos: []
 		},
 		{
@@ -291,7 +285,6 @@ var json = {
 				Texas Hippie Coalition (también conocido como THC) es una banda de
 				rock y heavy metal procedente de Denison, Texas.
 			`,
-			genero: 1,
 			discos: []
 		}
 	]
